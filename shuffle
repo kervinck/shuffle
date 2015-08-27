@@ -1,0 +1,15 @@
+#!/usr/bin/env python
+
+import random
+import subprocess
+import sys
+
+sorter = subprocess.Popen(['sort'], stdin=subprocess.PIPE, stdout=subprocess.PIPE)
+
+for line in sys.stdin:
+        sorter.stdin.write('%09d %s' % (random.randint(0, 999999999), line))
+
+sorter.stdin.close()
+
+for line in sorter.stdout:
+        print line[10:],
