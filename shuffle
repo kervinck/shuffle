@@ -11,5 +11,8 @@ for line in sys.stdin:
 
 sorter.stdin.close()
 
-for line in sorter.stdout:
-        print line[10:],
+try:
+        for line in sorter.stdout:
+                print line[10:],
+except IOError:
+        sorter.kill()
